@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC.Models.Product>
+
+@{
+    ViewData["Title"] = "View1";
+}
+
+<h1 class="title-create">Danh sách sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th> STT</th>
+            <th> Tên</th>
+            <th> Mô tả</th>
+            <th> Đơn giá</th>
+            <th> Danh mục</th>
+            <th> Trạng thái</th>
+            <th> STT</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @(item.Status ? "Hoạt động" : "Tạm dừng")
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
